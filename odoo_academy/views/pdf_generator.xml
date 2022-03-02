@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="invoice_pdf_view_form_inherit">
+            <field name="name">account.move.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <notebook>
+                    <page string="Account PDF">
+                        <report id="report_id"
+                        model="model.name"
+                        string="Model Report"
+                        report_type="qweb-pdf"
+                        name="account_move.template_id"
+                        file="account_move.template_id"
+                        menu="False"/>
+                        <field name ="pdf_invoice" />
+                        <button name="action_get_attachment" string="Generate Attachment" type="object"/>
+                    </page> 
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>
