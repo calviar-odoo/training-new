@@ -25,9 +25,9 @@ def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_st
             return {
                 'name': 'NOMBRE NUEVO',
                 'subscription_id': line.analytic_account_id.id,
-                'price_unit': price_unit or 0.0,
+                'price_unit': 50.0,
                 'discount': line.discount,
-                'quantity': line.quantity,
+                'quantity': 100,
                 'product_uom_id': line.uom_id.id,
                 'product_id': line.product_id.id,
                 'tax_ids': [(6, 0, tax_ids.ids)],
