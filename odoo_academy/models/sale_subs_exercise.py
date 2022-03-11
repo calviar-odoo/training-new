@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from odoo import models,fields,api
-class SaleSubsExercise(models.Model):
+class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
     def _prepare_invoice_extra_line(self, line, fiscal_position, date_start=False, date_stop=False):
