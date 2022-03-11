@@ -5,6 +5,15 @@ from dateutil.relativedelta import relativedelta
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
+INTERVAL_FACTOR = {
+    'daily': 30.0,
+    'weekly': 30.0 / 7.0,
+    'monthly': 1.0,
+    'yearly': 1.0 / 12.0,
+}
+
+PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'years'}    
+
     @api.model
     def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_stop=False):
             company = self.env.company or line.analytic_account_id.company_id
