@@ -13,7 +13,7 @@ def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_st
             tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
             price_unit = self.env['account.tax']._fix_tax_included_price_company(line.price_unit, line.product_id.taxes_id, tax_ids, self.company_id)
         return {
-            'name': line.name,
+            'name': 'NOMBRE NUEVO',
             'subscription_id': line.analytic_account_id.id,
             'price_unit': price_unit or 0.0,
             'discount': line.discount,
@@ -31,7 +31,7 @@ def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_st
         self.ensure_one()
         revenue_date_start = self.recurring_next_date
         revenue_date_stop = revenue_date_start + relativedelta(**{PERIODS[self.recurring_rule_type]: self.recurring_interval}) - relativedelta(days=1)
-        return [(0, 0, self._prepare_invoice_line(line, fiscal_position, revenue_date_start, revenue_date_stop)) for line in self.recurring_invoice_line_ids]
+        return [(0, 0, self._prepare_invoice_line(line, fiscal_position, revenue_date_start, revenue_date_stop))]
     
   #  (0, 0, self._prepare_invoice_extra_line(line, fiscal_position, revenue_date_start, revenue_date_stop)),
 
