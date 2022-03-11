@@ -11,7 +11,7 @@ class SubsExercise(models.Model):
             tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
             price_unit = self.env['account.tax']._fix_tax_included_price_company(line.price_unit, line.product_id.taxes_id, tax_ids, self.company_id)
         return {
-            'name': 'NOMBRE_EXTRA',
+            'name': line.name,
             'subscription_id': line.analytic_account_id.id,
             'price_unit': 1000,
             'discount': line.discount,
