@@ -14,12 +14,9 @@ PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'y
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
-
-
-
-    def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_stop=False):
+    def _prepare_invoice_extra_line(self, line, fiscal_position, date_start=False, date_stop=False):
                 company = self.env.company or line.analytic_account_id.company_id
-                tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == company)
+                tax_ids = 'taxxesssss'
                 price_unit = line.price_unit
                 if fiscal_position and tax_ids:
                     tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
@@ -43,7 +40,7 @@ class SubsExercise(models.Model):
             self.ensure_one()
             revenue_date_start = self.recurring_next_date
             revenue_date_stop = revenue_date_start + relativedelta(**{PERIODS[self.recurring_rule_type]: self.recurring_interval}) - relativedelta(days=1)
-            return [(0, 0, self._prepare_invoice_line(fiscal_position, revenue_date_start, revenue_date_stop))]    
+            return [(0, 0, self._prepare_invoice_extra_line(fiscal_position, revenue_date_start, revenue_date_stop))]    
     
   #  (0, 0, self._prepare_invoice_extra_line(line, fiscal_position, revenue_date_start, revenue_date_stop)),
 
