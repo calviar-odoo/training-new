@@ -26,13 +26,13 @@ PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'y
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
-    def _prepare_invoice_extra_line(self, line, fiscal_position, date_start=False, date_stop=False):
-        company = self.env.company or line.analytic_account_id.company_id
-        tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == company)
-        price_unit = line.price_unit
-        if fiscal_position and tax_ids:
-            tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
-            price_unit = self.env['account.tax']._fix_tax_included_price_company(line.price_unit, line.product_id.taxes_id, tax_ids, self.company_id)
+    def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
+        #company = self.env.company or line.analytic_account_id.company_id
+        #tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == company)
+        #price_unit = line.price_unit
+        #if fiscal_position and tax_ids:
+            #tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
+            #price_unit = self.env['account.tax']._fix_tax_included_price_company(line.price_unit, line.product_id.taxes_id, tax_ids, self.company_id)
         return {
             'name': 'NuevoProducto',
             'subscription_id': 10,
