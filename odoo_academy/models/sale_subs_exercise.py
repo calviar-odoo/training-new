@@ -26,7 +26,7 @@ PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'y
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
-    def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_stop=False):
+    def _prepare_invoice_extra_line(self, line, fiscal_position, date_start=False, date_stop=False):
             company = self.env.company or line.analytic_account_id.company_id
             tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == company)
             line.name = 'NOMBRE NUEVO'
