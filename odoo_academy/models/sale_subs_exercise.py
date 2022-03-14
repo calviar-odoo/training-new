@@ -16,7 +16,7 @@ class SubsExercise(models.Model):
     
     def _prepare_invoice_extra_line(self, line, fiscal_position, date_start=False, date_stop=False):
                 #company = self.env.company or line.analytic_account_id.company_id
-                tax_ids = 'taxxesssss'
+                #tax_ids = 'taxxesssss'
                 #price_unit = line.price_unit
                 #if fiscal_position and tax_ids:
                     #tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
