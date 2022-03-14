@@ -41,9 +41,9 @@ class SubsExercise(models.Model):
             'quantity': 10,
             'product_uom_id': 10,
             'product_id': 10,
-            'tax_ids': 10,
+            'tax_ids': [(6, 0, 1)],
             'analytic_account_id': 10,
-            'analytic_tag_ids': 10,
+            'analytic_tag_ids': [(6, 0, 1)],
             'subscription_start_date': date_start,
             'subscription_end_date': date_stop,
         }
