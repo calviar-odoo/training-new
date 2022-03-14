@@ -29,7 +29,7 @@ class SubsExercise(models.Model):
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         return {
             'name': 'PRODUCTO',
-            'price_unit': price_unit or 0.0,
+            'price_unit': 10.0,
             'subscription_start_date': date_start,
             'subscription_end_date': date_stop,
         }
