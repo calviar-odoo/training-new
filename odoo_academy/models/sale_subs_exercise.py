@@ -34,7 +34,7 @@ class SubsExercise(models.Model):
             'subscription_end_date': date_stop,
         }
     
-    def _prepare_invoice_extra_line(self, fiscal_position):
+    def _prepare_invoice_lines(self, fiscal_position):
         self.ensure_one()
         revenue_date_start = self.recurring_next_date
         revenue_date_stop = revenue_date_start + relativedelta(**{PERIODS[self.recurring_rule_type]: self.recurring_interval}) - relativedelta(days=1)
