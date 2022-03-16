@@ -41,10 +41,6 @@ class SubsExercise(models.Model):
         return [((0, 0, self._prepare_invoice_line(line, fiscal_position, revenue_date_start, revenue_date_stop)) for line in self.recurring_invoice_line_ids),
                 ((0, 0, self._prepare_invoice_extra_line(fiscal_position, revenue_date_start, revenue_date_stop)))]
             
-            
-            
-            ((0, 0, self._prepare_invoice_line(line, fiscal_position, revenue_date_start, revenue_date_stop)) for line in self.recurring_invoice_line_ids)),
-            ((0, 0, self._prepare_invoice_extra_line(fiscal_position, revenue_date_start, revenue_date_stop))]
         #return [(0, 0, self._prepare_invoice_extra_line(fiscal_position, revenue_date_start, revenue_date_stop))),
             
     
