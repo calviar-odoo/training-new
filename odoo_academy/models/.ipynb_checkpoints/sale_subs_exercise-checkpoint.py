@@ -29,15 +29,6 @@ class SubsExercise(models.Model):
 
     
     
-    def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
-        return {
-            'name': 'PRODUCTO',
-            'price_unit': date_start.format #Incluir el formato aqui,
-            'quantity': date_start.
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
-        }
-    
     def _prepare_invoice_lines(self, fiscal_position):
         self.ensure_one()
         revenue_date_start = self.recurring_next_date
