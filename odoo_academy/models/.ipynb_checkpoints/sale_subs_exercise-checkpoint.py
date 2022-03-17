@@ -22,17 +22,18 @@ INTERVAL_FACTOR = {
 }
 
 PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'years'}    
-price_unit: 15.0
+
 
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
-    
+
     
     
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         return {
             'name': 'PRODUCTO',
-            'price_unit': price_unit,
+            'price_unit': date_start.format #Incluir el formato aqui,
+            'quantity': date_start.
             'subscription_start_date': date_start,
             'subscription_end_date': date_stop,
         }
@@ -41,5 +42,28 @@ class SubsExercise(models.Model):
         self.ensure_one()
         revenue_date_start = self.recurring_next_date
         revenue_date_stop = revenue_date_start + relativedelta(**{PERIODS[self.recurring_rule_type]: self.recurring_interval}) - relativedelta(days=1)
-        return [(0, 0, self._prepare_invoice_extra_line(fiscal_position, revenue_date_start, revenue_date_stop))]
+        productos = [
+            {
+            'name': 'PRODUCTO2',
+            'price_unit': 45,
+            'quantity': 2,
+            'subscription_start_date': date_start,
+            'subscription_end_date': date_stop,
+            },
+            {
+            'name': 'PRODUCTO3',
+            'price_unit': 3,
+            'quantity': 4,
+            'subscription_start_date': date_start,
+            'subscription_end_date': date_stop,
+            },
+            {
+            'name': 'PRODUCTO543',
+            'price_unit': 2,
+            'quantity': 1,
+            'subscription_start_date': date_start,
+            'subscription_end_date': date_stop,
+            }
+        ]
+        return [(0, 0, productos)]
         #return [(0, 0, self._prepare_invoice_line(line, fiscal_position, revenue_date_start, revenue_date_stop)) for line in self.recurring_invoice_line_ids]            
