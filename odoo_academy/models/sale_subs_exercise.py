@@ -38,22 +38,22 @@ class SubsExercise(models.Model):
             'name': 'PRODUCTO2',
             'price_unit': 45,
             'quantity': 2,
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
+            'subscription_start_date': revenue_date_start,
+            'subscription_end_date': revenue_date_stop,
             },
             {
             'name': 'PRODUCTO3',
             'price_unit': 3,
             'quantity': 4,
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
+            'subscription_start_date': revenue_date_start,
+            'subscription_end_date': revenue_date_stop,
             },
             {
             'name': 'PRODUCTO543',
             'price_unit': 2,
             'quantity': 1,
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
+            'subscription_start_date': revenue_date_start,
+            'subscription_end_date': revenue_date_stop,
             }
         ]
         return [(0, 0, productos)]
