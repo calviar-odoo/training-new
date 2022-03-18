@@ -29,27 +29,13 @@ class SubsExercise(models.Model):
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         
         return {
-            {
+            [
             'name': 'PRODUCTO2',
             'price_unit': 45,
             'quantity': 2,
             'subscription_start_date': date_start,
             'subscription_end_date': date_stop,
-            },
-            {
-            'name': 'PRODUCTO3',
-            'price_unit': 3,
-            'quantity': 4,
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
-            },
-            {
-            'name': 'PRODUCTO543',
-            'price_unit': 2,
-            'quantity': 1,
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
-            }
+            ]
         }
     
     def _prepare_invoice_lines(self, fiscal_position):
