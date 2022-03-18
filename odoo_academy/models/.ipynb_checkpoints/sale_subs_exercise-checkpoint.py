@@ -30,11 +30,11 @@ class SubsExercise(models.Model):
         
         return {
             [
-            'name': 'PRODUCTO2',
-            'price_unit': 45,
-            'quantity': 2,
-            'subscription_start_date': date_start,
-            'subscription_end_date': date_stop,
+            'name' = 'PRODUCTO2',
+            'price_unit' = 45,
+            'quantity' = 2,
+            'subscription_start_date' = date_start,
+            'subscription_end_date' = date_stop,
             ]
         }
     
