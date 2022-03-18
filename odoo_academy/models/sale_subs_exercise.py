@@ -26,7 +26,7 @@ PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'y
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
-    def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
+    def _prepare_invoice_extra_line(self, date_start=False, date_stop=False):
         
         return [
                     {
