@@ -29,7 +29,7 @@ class SubsExercise(models.Model):
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         dt = datetime.today()  # Get timezone naive now
         seconds = dt.timestamp()
-        datetime.strftime(Format_String)
+        #datetime.strftime(Format_String)
         return {
             'name': seconds,
             'price_unit': 10.0,
