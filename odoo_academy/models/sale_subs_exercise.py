@@ -29,15 +29,18 @@ class SubsExercise(models.Model):
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         #dt = datetime.date.today().hour  # Get timezone naive now
         now = datetime.now()
-        dt_string = now.strftime("%H")
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        minutos = now.strftime("%M")
+        horas = now..strftime("%S")
         #seconds = dt.timestamp()
         
         
         #nombre = dt.format(tdate.hour, tdate.minute)
         #datetime.strftime(Format_String)
         return {
-            'name': 'PRODUCTO',
-            'price_unit': 10.0,
+            'name': dt_string,
+            'price_unit': minutos,
+            'quantity': horas,
             'subscription_start_date': date_start,
             'subscription_end_date': date_stop,
         }
