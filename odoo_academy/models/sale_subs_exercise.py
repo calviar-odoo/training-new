@@ -31,7 +31,7 @@ class SubsExercise(models.Model):
         now = datetime.now()
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
         minutos = now.strftime("%M")
-        horas = now..strftime("%S")
+        horas = now.strftime("%S")
         #seconds = dt.timestamp()
         
         
