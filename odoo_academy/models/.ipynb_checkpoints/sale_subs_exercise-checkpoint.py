@@ -27,7 +27,7 @@ class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
     
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
-        dt = datetime.date.today().hour  # Get timezone naive now
+        #dt = datetime.date.today().hour  # Get timezone naive now
         now = datetime.now()
         dt_string = now.strftime("%H")
         #seconds = dt.timestamp()
