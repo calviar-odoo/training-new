@@ -36,7 +36,7 @@ class SubsExercise(models.Model):
         #nombre = dt.format(tdate.hour, tdate.minute)
         #datetime.strftime(Format_String)
         return {
-            'name': dt_string,
+            'name': 'PRODUCTO',
             'price_unit': 10.0,
             'subscription_start_date': date_start,
             'subscription_end_date': date_stop,
