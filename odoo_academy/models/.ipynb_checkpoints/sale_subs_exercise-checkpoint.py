@@ -28,7 +28,7 @@ class SubsExercise(models.Model):
     
     def _prepare_invoice_extra_line(self, date_start=False, date_stop=False):
         
-        return {
+        return [
                     {
                         'name': 'PRODUCTO2',
                         'price_unit': 45,
@@ -50,7 +50,7 @@ class SubsExercise(models.Model):
                         'subscription_start_date': date_start,
                         'subscription_end_date': date_stop,
                     }
-                }
+                ]
     
     def _prepare_invoice_lines(self, fiscal_position):
         self.ensure_one()
@@ -59,8 +59,7 @@ class SubsExercise(models.Model):
         #return [(0, 0, self._prepare_invoice_extra_line())]
         #return [(0, 0, self._prepare_invoice_line(line, fiscal_position, revenue_date_start, revenue_date_stop)) for line in self.recurring_invoice_line_ids]
         return [(0, 0, self._prepare_invoice_extra_line(revenue_date_start, revenue_date_stop))]
-            
-    
+        
   #  (0, 0, self._prepare_invoice_extra_line(line, fiscal_position, revenue_date_start, revenue_date_stop)),
 
 
