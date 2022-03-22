@@ -30,20 +30,21 @@ class SubsExercise(models.Model):
     
     @api.onchange('template_id')
     def _get_subscription_template_id(self):
-        self.recurring_invoice_line_ids = self.env['product.template'].search([('subscription_template_id','=',self.template_id)])
+        for record in self:
+            record.recurring_invoice_line_ids = self.env['product.template'].search([('subscription_template_id','=',record.template_id.id)])
     
     @api.model
-    def _get_default_country(self):
+    def _get_default_template_id(self):
         for record in self:
-            country = self.env['product.template'].search([('subscription_template_id','=',3)]) # Evitar hardcodear, la idea es dinamizarlo con un método que retorne el ID (El de Corpoelec)
-            return country
+            template_id = self.env['sale.subscription'].search([('subscription_template_id','=',3)]) # Evitar hardcodear, la idea es dinamizarlo con un método que retorne el ID (El de Corpoelec)
+            return template_id
     
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         #dt = datetime.date.today().hour  # Get timezone naive now
         now = datetime.now()
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
         minutos = now.strftime("%M")
-        horas = now.strftime("%S")
+        segundos = now.strftime("%S")
         #seconds = dt.timestamp()
         
         
@@ -66,7 +67,7 @@ class SubsExercise(models.Model):
         
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
         minutos = now.strftime("%M")
-        horas = now.strftime("%S")
+        segundos = now.strftime("%S")
         
         company = self.env.company or line.analytic_account_id.company_id
         tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == company)
@@ -79,7 +80,7 @@ class SubsExercise(models.Model):
             'subscription_id': line.analytic_account_id.id,
             'price_unit': minutos,
             'discount': line.discount,
-            'quantity': horas,
+            'quantity': segundos,
             'product_uom_id': line.uom_id.id,
             'product_id': line.product_id.id,
             #'tax_ids': [(6, 0, tax_ids.ids)],
