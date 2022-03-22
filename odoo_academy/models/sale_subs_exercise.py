@@ -2,6 +2,7 @@
 import logging
 import datetime
 import traceback
+import pytz
 from datetime import datetime
 from ast import literal_eval
 from collections import Counter
@@ -46,26 +47,31 @@ class SubsExercise(models.Model):
         }
     
     def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_stop=False):
-        now = datetime.now()
+        
+        tz_VE = pytz.timezone('America/Venezuela') 
+        now = datetime.now(tz_VE)
+        #datetime_NY = datetime.now(tz_NY)
+        
+        
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
         minutos = now.strftime("%M")
         horas = now.strftime("%S")
         
         company = self.env.company or line.analytic_account_id.company_id
         tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == company)
-        price_unit = line.price_unit or minutos
+        price_unit = line.price_unit
         if fiscal_position and tax_ids:
             tax_ids = self.env['account.fiscal.position'].browse(fiscal_position).map_tax(tax_ids)
             price_unit = self.env['account.tax']._fix_tax_included_price_company(line.price_unit, line.product_id.taxes_id, tax_ids, self.company_id)
         return {
             'name': line.name,
             'subscription_id': line.analytic_account_id.id,
-            'price_unit': price_unit or 0.0,
+            'price_unit': minutos,
             'discount': line.discount,
-            'quantity': line.quantity,
+            'quantity': horas,
             'product_uom_id': line.uom_id.id,
             'product_id': line.product_id.id,
-            'tax_ids': [(6, 0, tax_ids.ids)],
+            #'tax_ids': [(6, 0, tax_ids.ids)],
             'analytic_account_id': line.analytic_account_id.analytic_account_id.id,
             'analytic_tag_ids': [(6, 0, line.analytic_account_id.tag_ids.ids)],
             'subscription_start_date': date_start,
