@@ -26,7 +26,11 @@ PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'y
 
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
-    recurring_invoice_line_ids = fields.One2many('sale.subscription.line', 'analytic_account_id', string='Subscription Lines', copy=True, default=lambda self: self._get_default_country()) #añadir DEfault agrego lambda, en el lambda coloco em étodo que retorne los productos
+    recurring_invoice_line_ids = fields.One2many('sale.subscription.line', 'analytic_account_id', string='Subscription Lines', copy=True) #añadir DEfault agrego lambda, en el lambda coloco em étodo que retorne los productos
+    
+    @api.onchange('template_id'):
+    def _get_subscription_template_id(self):
+        self.recurring_invoice_line_ids = self.env['product.template'].search([('subscription_template_id','=',self.template_id)])
     
     @api.model
     def _get_default_country(self):
