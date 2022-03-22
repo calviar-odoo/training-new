@@ -26,6 +26,12 @@ PERIODS = {'daily': 'days', 'weekly': 'weeks', 'monthly': 'months', 'yearly': 'y
 
 class SubsExercise(models.Model):
     _inherit = 'sale.subscription'
+    recurring_invoice_line_ids = fields.One2many('sale.subscription.line', 'analytic_account_id', string='Subscription Lines', copy=True, default=lambda self: self._get_default_country()) #añadir DEfault agrego lambda, en el lambda coloco em étodo que retorne los productos
+    
+    @api.model
+    def _get_default_country(self):
+        country = self.env['product.template'].search([('subscription_template_id','=',3)]) # Evitar hardcodear, la idea es dinamizarlo con un método que retorne el ID (El de Corpoelec)
+        return country
     
     def _prepare_invoice_extra_line(self, fiscal_position, date_start=False, date_stop=False):
         #dt = datetime.date.today().hour  # Get timezone naive now
