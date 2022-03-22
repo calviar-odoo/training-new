@@ -34,7 +34,7 @@ class SubsExercise(models.Model):
             product_lines = []
             products = self.env['product.template'].search([('subscription_template_id','=',record.template_id.id)])
             for product in products:
-                product_lines.append((0,0,{'product_id':product.id, 'name':product.name}))
+                product_lines.append((0,0,{'name':product.name}))
             record.recurring_invoice_line_ids = product_lines
         
     
