@@ -48,7 +48,7 @@ class SubsExercise(models.Model):
     
     def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_stop=False):
         
-        tz_VE = pytz.timezone('America/Venezuela') 
+        tz_VE = pytz.timezone('America/Aruba') 
         now = datetime.now(tz_VE)
         #datetime_NY = datetime.now(tz_NY)
         
