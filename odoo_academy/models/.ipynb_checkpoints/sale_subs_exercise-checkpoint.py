@@ -30,8 +30,12 @@ class SubsExercise(models.Model):
     
     @api.onchange('template_id')
     def _get_subscription_template_id(self):
-        for record in self:
-            record.recurring_invoice_line_ids = self.env['product.template'].search([('subscription_template_id','=',record.template_id.id)])
+        product_lines = []
+        products = self.env['product.template'].search([('subscription_template_id','=',self.template_id.id)])
+        for product in products:
+            product_lines.append((0,0,{'product_id':product.id, 'name':product.name}))
+        self.recurring_invoice_line_ids = product_lines
+        
     
     @api.model
     def _get_default_template_id(self):
